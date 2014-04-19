@@ -19,6 +19,24 @@ class Sprite
 
   update: (dt) =>
 
+-- collision
+  collided_with: (target) =>
+    left_x_inside = target.x >= @x and target.x <= @max_x!
+    top_y_inside = target.y >= @y and target.y <= @max_y!
+    right_x_inside = target\max_x! >= @x and target\max_x! <= @max_x!
+    bottom_y_inside = target\max_y! >= @y and target\max_y! <= @max_y!
+
+    collided = left_x_inside and top_y_inside
+
+    collided = collided or (right_x_inside and top_y_inside)
+
+    collided = collided or (right_x_inside and bottom_y_inside)
+
+    collided = collided or (left_x_inside and bottom_y_inside)
+
+    return collided
+
+
 -- debug
   setup_debug: =>
     @debug = true
@@ -51,3 +69,10 @@ class Sprite
     @dr = love.math.random(255)
     @dg = love.math.random(255)
     @db = love.math.random(255)
+
+  draw_position: (column) =>
+    x = 35*column
+    love.graphics.printf math.ceil(@x), x,0,0,"left"
+    love.graphics.printf math.ceil(@y), x,10,0,"left"
+    love.graphics.printf math.ceil(@max_x!), x,20,0,"left"
+    love.graphics.printf math.ceil(@max_y!), x,30,0,"left"

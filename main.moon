@@ -1,6 +1,7 @@
 Player = require "player"
 
 local player
+local thing
 
 movement_key = (dt) ->
   if love.keyboard.isDown("right") then
@@ -14,10 +15,14 @@ movement_key = (dt) ->
 
 love.load = ->
   player = Player 400,300
+  thing = Sprite "resources/imgs/sample.png", 450,300
 
 love.update = (dt) ->
   movement_key dt
 
 love.draw = ->
-  love.graphics.printf "Ola Mundo", 400,300,250,"center"
+  player\draw_position 0
+  thing\draw_position 1
+
   player\draw!
+  thing\draw!
