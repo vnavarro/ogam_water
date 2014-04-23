@@ -39,7 +39,7 @@ class Sprite
 
 -- debug
   setup_debug: =>
-    @debug = true
+    @debug = false
     @debug_outline = false
     @debug_random_color!
 
